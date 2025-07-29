@@ -1,0 +1,10 @@
+<div class="input-group">
+  <label>Japanese Yen</label>
+  <input
+    type="number"
+    placeholder="Enter JPY"
+    data-test-id="yen-value"
+    [value]="value === null ? '' : value"
+    (input)="onValueChange($any($event.target).value)"
+  />
+</div>

@@ -1,0 +1,19 @@
+<!-- The main container for the application -->
+<div class="currency-converter-container">
+  <h2>{{ title }}</h2>
+
+  <!-- USD Input Child Component -->
+  <!-- It receives `usdValue` from the parent and emits `valueChanged` events -->
+  <app-usd-input
+    [value]="usdValue"
+    (valueChanged)="onUsdChange($event)">
+  </app-usd-input>
+
+  <!-- JPY Input Child Component -->
+  <!-- It receives `yenValue` from the parent and emits `valueChanged` events -->
+  <app-yen-input
+    [value]="yenValue"
+    (valueChanged)="onYenChange($event)">
+  </app-yen-input>
+
+</div>

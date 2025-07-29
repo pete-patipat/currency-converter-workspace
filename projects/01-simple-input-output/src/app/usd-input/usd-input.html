@@ -1,0 +1,10 @@
+<div class="input-group">
+  <label>US Dollar</label>
+  <input
+    type="number"
+    placeholder="Enter USD"
+    data-test-id="usd-value"
+    [value]="value === null ? '' : value"
+    (input)="onValueChange($any($event.target).value)"
+  />
+</div>
