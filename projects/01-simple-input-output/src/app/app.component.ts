@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { UsdInputComponent } from './usd-input/usd-input.component';
 import { YenInputComponent } from './yen-input/yen-input.component';
+import { CurrencyConverterService } from './currency-converter';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,9 @@ import { YenInputComponent } from './yen-input/yen-input.component';
 })
 export class App {
   title = "Currency Converter";
+
+  // Inject the currency converter service
+  private currencyService = inject(CurrencyConverterService);
 
   // These properties will hold the current values for each currency.
   yenValue: number | null = null;
@@ -29,10 +33,10 @@ export class App {
     } else {
       const usdAmount = parseFloat(value);
       // 2. If it's a valid number, convert it to Yen.
-      if (!isNaN(usdAmount)) {
+      if (this.currencyService.isValidCurrencyAmount(usdAmount)) {
         // 3. Update both `this.usdValue` and `this.yenValue`.
         this.usdValue = usdAmount;
-        this.yenValue = this.toYen(usdAmount);
+        this.yenValue = this.currencyService.convertUsdToJpy(usdAmount);
       }
     }
     console.log('USD value changed:', value);
@@ -52,24 +56,13 @@ export class App {
     } else {
       const yenAmount = parseFloat(value);
       // 2. If it's a valid number, convert it to USD.
-      if (!isNaN(yenAmount)) {
+      if (this.currencyService.isValidCurrencyAmount(yenAmount)) {
         // 3. Update both `this.yenValue` and `this.usdValue`.
         this.yenValue = yenAmount;
-        this.usdValue = this.toUsd(yenAmount);
+        this.usdValue = this.currencyService.convertJpyToUsd(yenAmount);
       }
     }
     console.log('Yen value changed:', value);
-  }
-
-  // Helper methods for the conversions.
-  private toYen(usd: number): number {
-    // 1 USD = 110 JPY
-    return usd * 110;
-  }
-
-  private toUsd(yen: number): number {
-    // 1 JPY = 1/110 USD (more precise than multiplying by 0.009)
-    return Math.round((yen / 110) * 100) / 100;
   }
 }
 
