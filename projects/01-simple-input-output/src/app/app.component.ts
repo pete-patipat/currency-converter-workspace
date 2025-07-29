@@ -68,8 +68,8 @@ export class App {
   }
 
   private toUsd(yen: number): number {
-    // 1 JPY = 0.009 USD
-    return yen * 0.009;
+    // 1 JPY = 1/110 USD (more precise than multiplying by 0.009)
+    return Math.round((yen / 110) * 100) / 100;
   }
 }
 

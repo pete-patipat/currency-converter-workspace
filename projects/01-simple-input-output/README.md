@@ -49,6 +49,21 @@ src/app/
 - **1 USD = 110 JPY**
 - **1 JPY = 0.009 USD**
 
+### Precision Handling
+To avoid JavaScript floating-point precision issues (e.g., `110 * 0.009 = 0.9899999999999999`), the JPY to USD conversion uses division instead of multiplication:
+
+```typescript
+// Instead of: yen * 0.009 (causes precision issues)
+// We use: yen / 110 (more precise)
+private toUsd(yen: number): number {
+  return Math.round((yen / 110) * 100) / 100;
+}
+```
+
+This ensures that:
+- **110 JPY → 1.00 USD** (not 0.9899999999999999)
+- Results are rounded to 2 decimal places for currency precision
+
 ### Required Data Attributes
 - USD input: `data-test-id="usd-value"`
 - JPY input: `data-test-id="yen-value"`
