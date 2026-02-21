@@ -12,8 +12,7 @@ const App = () => {
 
   const handleUsdChange = (value) => {
     const numericValue = value === '' ? null : parseFloat(value);
-
-    if (numericValue !== null && !isNaN(numericValue) && !isFinite(numericValue)) {
+    if (numericValue !== null && !isNaN(numericValue) && isFinite(numericValue)) {
       setUsdValue(numericValue);
       const result = value * USD_TO_JPY_RATE;
       const multiplier = Math.pow(10, CURRENCY_DECIMAL_PLACES);
@@ -27,8 +26,7 @@ const App = () => {
 
   const handleYenChange = (value) => {
     const numericValue = value === '' ? null : parseFloat(value);
-
-    if (numericValue !== null && !isNaN(numericValue) && !isFinite(numericValue)) {
+    if (numericValue !== null && !isNaN(numericValue) && isFinite(numericValue)) {
       setYenValue(numericValue);
       const result = value / USD_TO_JPY_RATE;
       const multiplier = Math.pow(10, CURRENCY_DECIMAL_PLACES);
