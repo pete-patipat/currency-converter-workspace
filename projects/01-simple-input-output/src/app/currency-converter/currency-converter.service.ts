@@ -11,10 +11,13 @@ export class CurrencyConverterService {
   /**
    * Convert USD amount to JPY
    * @param usd Amount in USD
-   * @returns Amount in JPY
+   * @returns Amount in JPY rounded to 2 decimal places
    */
   convertUsdToJpy(usd: number): number {
-    return usd * this.USD_TO_JPY_RATE;
+    const result = usd * this.USD_TO_JPY_RATE;
+    // Round to specified decimal places for currency precision
+    const multiplier = Math.pow(10, this.CURRENCY_DECIMAL_PLACES);
+    return Math.round(result * multiplier) / multiplier;
   }
 
   /**

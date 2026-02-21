@@ -6,7 +6,7 @@ import { UsdInputComponent } from "./usd-input/usd-input.component";
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [YenInputComponent]
+  imports: [YenInputComponent, UsdInputComponent]
 })
 export class AppComponent {
   title = "Currency Converter";

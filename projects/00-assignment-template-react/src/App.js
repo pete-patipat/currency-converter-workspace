@@ -8,13 +8,17 @@ const App = () => {
 
   // Exchange rate constant
   const USD_TO_JPY_RATE = 110;
+  const CURRENCY_DECIMAL_PLACES = 2;
 
   const handleUsdChange = (value) => {
     const numericValue = value === '' ? null : parseFloat(value);
 
-    if (numericValue !== null && !isNaN(numericValue)) {
+    if (numericValue !== null && !isNaN(numericValue) && !isFinite(numericValue)) {
       setUsdValue(numericValue);
-      setYenValue(Number((numericValue * USD_TO_JPY_RATE).toFixed(2)));
+      const result = value * USD_TO_JPY_RATE;
+      const multiplier = Math.pow(10, CURRENCY_DECIMAL_PLACES);
+      const roundedResult = Math.round(result * multiplier) / multiplier;
+      setYenValue(roundedResult);
     } else {
       setUsdValue(null);
       setYenValue(null);
@@ -24,9 +28,12 @@ const App = () => {
   const handleYenChange = (value) => {
     const numericValue = value === '' ? null : parseFloat(value);
 
-    if (numericValue !== null && !isNaN(numericValue)) {
+    if (numericValue !== null && !isNaN(numericValue) && !isFinite(numericValue)) {
       setYenValue(numericValue);
-      setUsdValue(Number((numericValue / USD_TO_JPY_RATE).toFixed(2)));
+      const result = value / USD_TO_JPY_RATE;
+      const multiplier = Math.pow(10, CURRENCY_DECIMAL_PLACES);
+      const roundedResult = Math.round(result * multiplier) / multiplier;
+      setUsdValue(roundedResult);
     } else {
       setYenValue(null);
       setUsdValue(null);
