@@ -1,0 +1,60 @@
+/* Container for the whole app */
+.currency-converter-container {
+  max-width: 600px;
+  margin: 4rem auto;
+  padding: 3rem 2rem;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Soft, subtle shadow */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Header styling */
+.currency-converter-container h2 {
+  text-align: center;
+  color: #333333;
+  margin-top: 0;
+  margin-bottom: 2.5rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+/* Grouping for each input */
+.input-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label styling */
+.input-group label {
+  font-weight: 600;
+  color: #444444;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* Input field styling */
+.input-group input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: #333;
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Placeholder color */
+.input-group input::placeholder {
+  color: #888888;
+}
+
+/* Focus state */
+.input-group input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
